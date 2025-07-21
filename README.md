@@ -44,3 +44,38 @@ git clone https://github.com/yourusername/technical-writing-repo.git
 
 # Install dependencies (if any)
 pip install -r requirements.txt
+![Alt text](image.png){ width="600" }
+<figcaption>Figure 1: System architecture diagram</figcaption>
+## GET /users/{id}
+
+### Parameters
+| Name | Type   | Required | Description          |
+|------|--------|----------|----------------------|
+| id   | string | Yes      | User identifier      |
+
+### Example Response
+```json
+{
+  "id": "usr_123",
+  "name": "Jane Doe"
+}
+name: Docs CI
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Vale Linting
+        uses: errata-ai/vale-action@v2
+        with:
+          files: 'docs/**/*.md'
+      - name: Build HTML
+        run: mkdocs build
+# Run all checks
+make test
+
+# Individual tests
+vale docs/
+markdownlint docs/**/*.md
